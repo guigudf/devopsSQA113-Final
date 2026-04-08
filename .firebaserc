@@ -1,0 +1,21 @@
+{
+  "projects": {
+    "default": "devops-final-9b6da"
+  },
+  "targets": {
+    "devops-final-9b6da": {
+      "hosting": {
+        "testing": [
+          "testing-site-d76e1"
+        ],
+        "staging": [
+          "staging-site-f9642"
+        ],
+        "production": [
+          "production-site-dc6c5"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
