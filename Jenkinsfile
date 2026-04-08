@@ -6,22 +6,26 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'npm install -g firebase-tools'
+                echo "Installing Firebase Tools..."
+                bat 'npm install -g firebase-tools'
             }
         }
         stage('Testing') {
             steps {
-                sh 'echo "Running tests..."'
+                echo "Running tests..."
+                bat 'echo Test stage executed'
             }
         }
         stage('Staging') {
             steps {
-                sh 'firebase deploy --only hosting:staging --token $FIREBASE_TOKEN'
+                echo "Deploying to Staging..."
+                bat 'firebase deploy --only hosting:staging --token %FIREBASE_TOKEN%'
             }
         }
         stage('Production') {
             steps {
-                sh 'firebase deploy --only hosting:production --token $FIREBASE_TOKEN'
+                echo "Deploying to Production..."
+                bat 'firebase deploy --only hosting:production --token %FIREBASE_TOKEN%'
             }
         }
     }
