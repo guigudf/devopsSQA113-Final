@@ -10,23 +10,34 @@ pipeline {
                 bat 'npm install -g firebase-tools'
             }
         }
+
         stage('Testing') {
             steps {
                 echo 'Deploying to Testing...'
-                bat 'firebase deploy --only hosting:testing-site-d76e1 --token %FIREBASE_TOKEN%'
+                bat 'firebase deploy --only hosting:testing --token %FIREBASE_TOKEN%'
             }
         }
+
         stage('Staging') {
             steps {
                 echo 'Deploying to Staging...'
-                bat 'firebase deploy --only hosting:staging-site-f9642 --token %FIREBASE_TOKEN%'
+                bat 'firebase deploy --only hosting:staging --token %FIREBASE_TOKEN%'
             }
         }
+
         stage('Production') {
             steps {
                 echo 'Deploying to Production...'
-                bat 'firebase deploy --only hosting:production-site-dc6c5 --token %FIREBASE_TOKEN%'
+                bat 'firebase deploy --only hosting:production --token %FIREBASE_TOKEN%'
             }
+        }
+    }
+    post {
+        success {
+            echo 'Deployment finished successfully!'
+        }
+        failure {
+            echo 'Deployment failed, check the logs!'
         }
     }
 }
